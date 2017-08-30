@@ -14,12 +14,14 @@ The model has two actuators:
 * The acceleration, a(t)
 
 The update equations:
-    x(t + 1) = x(t) + v(t) * cos(psi(t)) * dt
-    y(t + 1) = y(t) + v(t) * sin(psi(t)) * dt
-    psi(t + 1) = psi(t) + v(t)/Lf * delta(t) * dt
-    v(t + 1) = v(t) + a(t) * dt
-    cte(t + 1) = f(x(t)) - y(t) + v(t) * sin(epsi(t)) * dt
-    epsi(t + 1) = psi(t) - atan(f'(x(t))) + v(t)/Lf * delta(t) * dt 
+```
+x(t + 1) = x(t) + v(t) * cos(psi(t)) * dt
+y(t + 1) = y(t) + v(t) * sin(psi(t)) * dt
+psi(t + 1) = psi(t) + v(t)/Lf * delta(t) * dt
+v(t + 1) = v(t) + a(t) * dt
+cte(t + 1) = f(x(t)) - y(t) + v(t) * sin(epsi(t)) * dt
+epsi(t + 1) = psi(t) - atan(f'(x(t))) + v(t)/Lf * delta(t) * dt 
+```
 
 ## Timestep Length and Elapsed Duration
 
@@ -32,8 +34,10 @@ As mentioned in the project Q&A, these values of N and dt mean that the model is
 ## Latency
 
 In order to account for the 100 ms latency, the initial values are calculated as follows:
+```
     double initial_x = v * 0.1; // Future position of the car after 100 ms.
     double initial_y = 0;
     double initial_psi = -v * steer_value * 0.05; // Future heading of the car, which is some function of the velocity and steering angle.
     double initial_v = v + throttle_value * 0.25; // Future velocity of the car taking into account acceleration.
+```
  
